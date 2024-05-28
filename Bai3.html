@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test3</title>
+</head>
+<body>
+<input type="text" id="n" placeholder="Nhập số lượng phần tử">
+<br>
+<button onclick="kiemTraN()">Nhập phần tử cho mảng</button>
+</body>
+<script>
+    let A = [];
+    let B = [];
+    let n = 0;
+    function kiemTraN() {
+        n = +document.getElementById("n").value;
+        if (n > 0) nhapMang();
+        else alert("n phải lớn hơn 0");
+    }
+    function nhapMang() {
+        for(let i = 0; i < n; i++) {
+            A[i] = +prompt("Nhập phần tử thứ " + (i + 1));
+            if (kiemTraSoNguyenTo(A[i])) B.push(A[i]);
+        }
+        if (B.length > 0){
+            document.write("Các số nguyên tố tìm được: ");
+            while (B.length > 1) {
+                let min = B[0];
+                for(let i = 0; i < B.length; i++)
+                    if (B[i] < min) min = B[i];
+                document.write(min + " ");
+                B.splice(B.indexOf(min),1);
+            }
+            document.write(B[0]);
+        }
+        else alert("Không có phần tử nào là số nguyên tố trong mảng");
+    }
+    function kiemTraSoNguyenTo(X) {
+        if (X <= 1) return false;
+        for (let i = 2; i < X; i++)
+            if (X%i == 0) return false;
+        return true;
+    }
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test1</title>
+</head>
+<body>
+<input type="number" id="n" placeholder="Nhập n">
+<br>
+<button onclick="kiemTraN()">Nhập phần tử cho mảng</button>
+</body>
+<script>
+    let A = [];
+    let n = 0;
+    function kiemTraN() {
+        n = +document.getElementById("n").value;
+        if (n > 0 && n <= 20) nhapMang();
+        else alert("n phải lớn hơn 0 và <= 20");
+    }
+    function nhapMang() {
+        let TongChan = 0;
+        let TongLe = 0;
+        for(let i = 0; i < n; i++) {
+            A[i] = +prompt("Nhập phần tử thứ " + (i + 1));
+            if (A[i]%2 == 0) TongChan += A[i];
+            else TongLe += A[i];
+        }
+        document.write("Danh sách các phần tử của mảng: ");
+        for(let i = 0; i < n; i++) {
+            document.write(A[i] + " ");
+        }
+        document.write("<br>Hiệu của tổng các số chẵn và tổng các số lẻ: " + (TongChan-TongLe));
+    }
+</script>
+</html>

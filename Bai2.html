@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test2</title>
+</head>
+<body>
+<input type="text" id="a" placeholder="Nhập chuỗi">
+<br>
+<button onclick="demInHoa()">Kiểm tra số lượng ký tự in hoa</button>
+</body>
+<script>
+    function demInHoa() {
+        let A = document.getElementById("a").value;
+        let count = 0;
+        for (let i = 0; i < A.length; i++) {
+            if (A[i] >= 'A' && A[i] <= 'Z') count++;
+        }
+        if (count > 0) document.write("Số lượng ký tự in hoa trong chuỗi: " + count);
+        else alert("The Strings is not contain upper char");
+    }
+</script>
+</html>

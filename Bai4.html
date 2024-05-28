@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test4</title>
+</head>
+<body>
+<button onclick="showListPhone()">Danh sách điện thoại</button> |
+<button onclick="formAdd()">Thêm điện thoại</button>
+<div id="display"></div>
+</body>
+<script>
+    let myListPhone = new ListPhone();
+    let listPhone = myListPhone.listPhones;
+    class ListPhone {
+        listPhones;
+        constructor() {
+            let storageData = localStorage.getItem('data');
+            this.listPhones = storageData ? JSON.parse(storageData) : [];
+        }
+        add(newPhone) {
+            this.listPhones.push(newPhone);
+        }
+    }
+    class Phone {
+        MDT;
+        Ten;
+        HSX;
+        Gia;
+        constructor(MDTInput, TenInput, HSXInput, GiaInput) {
+            this.MDT = MDTInput;
+            this.Ten = TenInput;
+            this.HSX = HSXInpu;
+            this.Gia = GiaInput;
+        }
+    }
+    function showListPhone() {
+        document.getElementById("display").innerHTML = `
+    <h3>Danh Sách Điện Thoại</h3>
+    <table border="1px">
+        <tr>
+            <th>Mã điện thoại</th>
+            <th>Tên</th>
+            <th>Hãng sản xuất</th>
+            <th>Giá</th>
+        </tr>
+        <tbody id="listPhones" style="text-align: center"></tbody>
+    </table>`;
+        let str = ``
+        for (let i = 0; i < listPhone.length; i++) {
+            str += `<tr>
+                    <td>${listPhone[i].MDT}</td>
+                    <td>${listPhone[i].Ten}</td>
+                    <td>${listPhone[i].HSX}</td>
+                    <td>${listPhone[i].Gia}</td>
+                </tr>`
+        }
+        document.getElementById('listPhones').innerHTML = str;
+    }
+    function formAdd() {
+        document.getElementById('display').innerHTML = `
+    <input id="addMDT" placeholder="Nhập mã điện thoại">
+    <input id="addTen" placeholder="Nhập tên">
+    <input id="addHSX" placeholder="Nhập hãng sản xuất">
+    <input id="addGia" placeholder="Nhập giá">
+    <button onclick="addPhone()">Thêm</button>
+    `
+    }
+    function addPhone() {
+        let MDT = document.getElementById('addMDT').value;
+        let Ten = document.getElementById('addTen').value;
+        let HSX = document.getElementById('addHSX').value;
+        let Gia = parseFloat(document.getElementById('addGia').value);
+        console.log(MDT);
+        let newPhone = new Phone(MDT, Ten, HSX, Gia);
+        listPhone.add(newPhone);
+        saveLocalStorage();
+        showListPhone();
+    }
+</script>
+</html>
